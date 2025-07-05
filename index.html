@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>afr.emon</title>
+    <style>
+        /* CSS ভেরিয়েবল দিয়ে থিমের প্রস্তুতি */
+        :root {
+            --primary-color: #4CAF50; /* সবুজ */
+            --secondary-color: #333; /* কালো */
+            --text-color: #333; /* গাঢ় ধূসর */
+            --bg-color: #f4f4f4; /* হালকা ধূসর */
+            --container-bg: white;
+            --border-color: #ddd;
+            --header-text-color: white;
+            --hover-bg: #575757;
+            --button-hover-bg: #45a049;
+        }
+
+        /* বেসিক রিসেট ও ফন্ট */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* হেডার স্টাইল */
+        header {
+            background-color: var(--primary-color);
+            color: var(--header-text-color);
+            padding: 1.5em 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            margin: 0.5em 0 0;
+            font-size: 1.1em;
+        }
+
+        /* নেভিগেশন বার স্টাইল */
+        nav {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.8em 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 2em; /* কন্টেনারের উপরে একটু ফাঁকা */
+        }
+
+        nav a {
+            color: white;
+            padding: 0.8em 1.5em;
+            text-decoration: none;
+            transition: background-color 0.3s ease; /* হোভার অ্যানিমেশন */
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: var(--hover-bg);
+        }
+
+        /* কন্টেইনার স্টাইল */
+        .container {
+            width: 90%; /* মোবাইলের জন্য একটু বেশি প্রস্থ */
+            max-width: 960px; /* বড় স্ক্রিনের জন্য সর্বোচ্চ প্রস্থ */
+            margin: 2em auto;
+            padding: 2em;
+            background-color: var(--container-bg);
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+
+        /* সেকশন স্টাইল */
+        .section {
+            margin-bottom: 3em;
+            padding: 2em;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--bg-color); /* সেকশনের ব্যাকগ্রাউন্ড হালকা ভিন্ন হতে পারে */
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.05); /* হালকা ভেতরের শ্যাডো */
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.8em;
+            margin-bottom: 1.5em;
+            font-size: 1.8em;
+        }
+
+        /* ফর্ম উপাদানগুলির স্টাইল */
+        label {
+            display: block;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        input[type="text"],
+        input[type="file"],
+        textarea {
+            width: calc(100% - 24px); /* প্যাডিং বাদ দিয়ে পুরো প্রস্থ */
+            padding: 12px;
+            margin-bottom: 1.2em;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box; /* প্যাডিং সহ প্রস্থ গণনা */
+        }
+
+        textarea {
+            resize: vertical; /* শুধুমাত্র উল্লম্বভাবে রিসাইজ করা যাবে */
+            min-height: 80px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            width: auto; /* বাটনের প্রস্থ কনটেন্ট অনুযায়ী */
+            display: inline-block; /* ইনপুট লাইনে না থেকে নিজের লাইন নেবে */
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: var(--button-hover-bg);
+        }
+
+        /* ফুটার স্টাইল */
+        footer {
+            text-align: center;
+            padding: 1.5em 0;
+            background-color: var(--secondary-color);
+            color: white;
+            margin-top: 3em;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* রেসপনসিভনেস (ছোট পর্দার জন্য) */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 1em;
+            }
+            nav a {
+                display: block; /* ছোট স্ক্রিনে নেভিগেশন লিংক ব্লক হিসেবে */
+                margin-bottom: 0.5em;
+            }
+            header h1 {
+                font-size: 2em;
+            }
+            .section h2 {
+                font-size: 1.5em;
+            }
+        }
+
+        /* গুগল সার্চ বারের জন্য স্টাইল (ঐচ্ছিক) */
+        .gcse-search-container {
+            margin: 2em auto;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            padding: 1em;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>afr.emon</h1>
+        <p>আপনার পরিচয়, বই, ছবি এবং অন্যান্য ডকুমেন্ট আপলোড করুন</p>
+    </header>
+
+    <nav>
+        <a href="#identity">পরিচয় আপলোড</a>
+        <a href="#books">বই প্রকাশ</a>
+        <a href="#photos">ছবি আপলোড</a>
+        <a href="#documents">অন্যান্য ডকুমেন্ট</a>
+    </nav>
+
+    <div class="gcse-search-container">
+        <gcse:search></gcse:search>
+    </div>
+
+    <div class="container">
+        <div id="identity" class="section">
+            <h2>পরিচয় আপলোড</h2>
+            <p>আপনার ব্যক্তিগত বা পেশাগত পরিচয় Google-এ প্রদর্শনের জন্য তথ্য দিন।</p>
+            <form>
+                <label for="name">আপনার নাম:</label>
+                <input type="text" id="name" name="name" placeholder="আপনার পুরো নাম লিখুন">
+
+                <label for="profession">পেশা:</label>
+                <input type="text" id="profession" name="profession" placeholder="আপনার পেশা লিখুন">
+
+                <label for="bio">সংক্ষিপ্ত বায়ো:</label>
+                <textarea id="bio" name="bio" rows="4" placeholder="আপনার সম্পর্কে কিছু লিখুন"></textarea>
+
+                <p>অথবা, আপনার QR কোড স্ক্যান করুন (এই ফিচারটি ডেভেলপ করতে হবে):</p>
+                <button type="button">QR কোড স্ক্যানার চালু করুন</button>
+                <p style="font-size: 0.9em; color: #666;">এই তথ্য Google My Business প্রোফাইল তৈরিতে সাহায্য করবে।</p>
+                <button type="submit">তথ্য জমা দিন</button>
+            </form>
+        </div>
+
+        <div id="books" class="section">
+            <h2>বই প্রকাশ</h2>
+            <p>আপনার লেখা বই Google Play Books-এ প্রকাশ করার জন্য এখানে তথ্য আপলোড করুন।</p>
+            <form>
+                <label for="book-title">বইয়ের নাম:</label>
+                <input type="text" id="book-title" name="book-title" placeholder="বইয়ের পুরো নাম">
+
+                <label for="author">লেখক:</label>
+                <input type="text" id="author" name="author" placeholder="আপনার নাম">
+
+                <label for="book-description">বইয়ের বিবরণ:</label>
+                <textarea id="book-description" name="book-description" rows="6" placeholder="বই সম্পর্কে বিস্তারিত লিখুন"></textarea>
+
+                <label for="book-cover">বইয়ের কভার ছবি আপলোড করুন:</label>
+                <input type="file" id="book-cover" name="book-cover" accept="image/*">
+
+                <label for="book-file">বইয়ের ফাইল আপলোড করুন (PDF/EPUB):</label>
+                <input type="file" id="book-file" name="book-file" accept=".pdf,.epub">
+                <p style="font-size: 0.9em; color: #666;">আপলোড করার পর আপনাকে Google Play Books পার্টনার সেন্টারে নির্দেশিত করা হবে।</p>
+                <button type="submit">বই জমা দিন</button>
+            </form>
+        </div>
+
+        <div id="photos" class="section">
+            <h2>ছবি আপলোড</h2>
+            <p>আপনার ছবিগুলি Google Photos বা Google Drive-এ আপলোড করুন।</p>
+            <form>
+                <label for="photo-upload">ছবি নির্বাচন করুন:</label>
+                <input type="file" id="photo-upload" name="photo-upload" accept="image/*" multiple>
+
+                <label for="photo-caption">ছবির ক্যাপশন (ঐচ্ছিক):</label>
+                <input type="text" id="photo-caption" name="photo-caption" placeholder="ছবির সংক্ষিপ্ত বিবরণ">
+
+                <p style="font-size: 0.9em; color: #666;">ছবি আপলোড করার পর Google Photos বা Google Drive-এ সংরক্ষণের নির্দেশনা পাবেন।</p>
+                <button type="submit">ছবি আপলোড করুন</button>
+            </form>
+        </div>
+
+        <div id="documents" class="section">
+            <h2>অন্যান্য ডকুমেন্ট আপলোড</h2>
+            <p>গুরুত্বপূর্ণ ডকুমেন্টগুলি Google Drive-এ সংরক্ষণের জন্য আপলোড করুন।</p>
+            <form>
+                <label for="doc-upload">ডকুমেন্ট নির্বাচন করুন:</label>
+                <input type="file" id="doc-upload" name="doc-upload" multiple>
+
+                <label for="doc-description">ডকুমেন্টের বিবরণ (ঐচ্ছিক):</label>
+                <textarea id="doc-description" name="doc-description" rows="3" placeholder="ডকুমেন্টের সংক্ষিপ্ত বিবরণ"></textarea>
+
+                <p style="font-size: 0.9em; color: #666;">ডকুমেন্ট আপলোড করার পর Google Drive-এ সংরক্ষণের নির্দেশনা পাবেন।</p>
+                <button type="submit">ডকুমেন্ট আপলোড করুন</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 afr.emon। সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+    <script>
+        // জাভাস্ক্রিপ্ট কোড: এটি বর্তমান HTML কোডে কোনো কার্যকারিতা যোগ করে না।
+        // এটি শুধুমাত্র ফর্ম সাবমিট হলে একটি অ্যালার্ট দেখায়।
+        // লগইন সিস্টেম, থিম পরিবর্তন এবং ফাইল আপলোডের জন্য জটিল ব্যাক-এন্ড এবং API ইন্টিগ্রেশন প্রয়োজন।
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // ফর্মের ডিফল্ট সাবমিশন আচরণ বন্ধ করা
+                alert('এই ফর্মের ডেটা প্রক্রিয়াকরণের জন্য একটি ব্যাক-এন্ড সার্ভার এবং লগইন সিস্টেম প্রয়োজন। এটি বর্তমানে শুধুমাত্র একটি ডিজাইন দেখানো হয়েছে।');
+                // ভবিষ্যতে এখানে ডেটা প্রসেসিং এবং Google API কল করার লজিক যুক্ত হবে।
+            });
+        });
+
+        // Google Custom Search Engine লোড করার স্ক্রিপ্ট
+        // এই স্ক্রিপ্টে আপনার Search Engine ID দিতে হবে
+        (function() {
+            var cx = '05d7712aaa5b847a7'; // ***এখানে আপনার Google CSE ID বসান***
+            var gcse = document.createElement('script');
+            gcse.type = 'text/javascript';
+            gcse.async = true;
+            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(gcse, s);
+        })();
+    </script>
+</body>
+</html>
